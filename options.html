@@ -1,0 +1,281 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="third-party/jquery-ui.css">
+    <link rel="stylesheet" href="third-party/jquery-ui.structure.css">
+    <link rel="stylesheet" href="third-party/jquery-ui.theme.css">
+    <link rel="stylesheet" href="popup.css">
+    <script src="third-party/jquery-1.12.4.js"></script>
+    <script src="third-party/jquery-ui-1.12.1.js"></script>
+    <title>Bookmarks Manager</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/third-party/jquery.modal.min.css" />
+</head>
+
+<body style="width: 100%">
+
+    <!-- Link to open the modal -->
+
+
+    <form name="drop_list" action="options.html" method="post">
+
+
+
+        <div class="boochmark">
+
+            <div class="boochmark__row">
+                <div class="boochmark__body">
+                    <div class="boochmark-home">
+
+                        <div class="wrapper">
+                            <div class="boochmark-home__body">
+                                <p id="leftSelectbreadCrumbs" class="breadCrumb">Home</p>
+                                <div class="input-search">
+                                    <input class="search-input" id="searhBookmarkLeft" placeholder="search" type="text">
+                                    <img src="img/search.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boochmark-home">
+                        <div class="wrapper">
+                            <div class="boochmark-home__body">
+
+                                <div class="block-buttons">
+                                    <div class="button reloadButton" data-select="leftSelect">
+                                        <img src="img/reload.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Reload one open folder and Previous (double-click reload Two folders)
+                                        </div>
+                                    </div>
+                                    <div class="button" id="goToRootLeftBtn">
+                                        <img src="img/home.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Goo root folder current
+                                        </div>
+                                    </div>
+                                    <div class="button sort-click" data-select="leftSelect">
+                                        <img src="img/sort.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Sort current folder
+                                        </div>
+                                    </div>
+                                    <div class="button trash-click" data-select="leftSelect">
+                                        <img src="img/trash.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Trash select items on current folder
+                                        </div>
+                                    </div>
+
+                                    <a class="button folder-click" data-select="leftSelect" data-folderclick="0"
+                                        href="#addBook" rel="modal:open">
+                                        <img src="img/folder.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Add new folder on open folder current
+                                        </div>
+                                    </a>
+                                    <a href="#addBook" rel="modal:open" class="button folder-click"
+                                        data-select="leftSelect" data-folderclick="1">
+                                        <img src="img/bachnmark.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Add new bookmark on open folder current
+                                        </div>
+                                    </a>
+                                    <div class="button moveUp" data-select="leftSelect">
+                                        <img src="img/top.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Move top select items on current folder
+                                        </div>
+                                    </div>
+                                    <div class="button moveBottom" data-select="leftSelect">
+                                        <img src="img/top.svg" alt="" class="rotate-180">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Move bottom select items on current folder
+                                        </div>
+                                    </div>
+                                    <div class="button setting-click" data-select="leftSelect">
+                                        <img src="img/setting.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="false">
+                                            Setting options
+                                        </div>
+                                    </div>
+                                    <div class="button " data-select="leftSelect">
+                                        <input type="file" class="input-file">
+                                    </div>
+                                </div>
+                                <div class="btn-default" id="addAllBookmark">add all boochmark</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boochmark-global leftSelect">
+                        <input class="hide inputIDCurrent" value="0">
+                        <input class="hide inputIDPrev" value="0">
+                        <select class="select-main" id="leftSelect" class="searchSelect" name="leftSelect"
+                            multiple="multiple" size="20">
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="boochmark__body">
+                    <div class="boochmark-home">
+
+                        <div class="wrapper">
+                            <div class="boochmark-home__body">
+                                <p id="rightSelectbreadCrumbs" class="breadCrumb">Home</p>
+                                <div class="input-search">
+                                    <input class="search-input" id="searhBookmarkRight" placeholder="search"
+                                        type="text">
+                                    <img src="img/search.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boochmark-home">
+                        <div class="wrapper">
+                            <div class="boochmark-home__body">
+                                <div class="block-buttons">
+                                    <input class="hide" id="rightID" value="0">
+                                    <div class="button reloadButton" data-select="rightSelect" id="">
+                                        <img src="img/reload.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Reload one open folder and Previous (double-click reload Two folders)
+                                        </div>
+                                    </div>
+                                    <div class="button" id="goToRootRightBtn">
+                                        <img src="img/home.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Goo root folder current
+                                        </div>
+                                    </div>
+                                    <div class="button sort-click" data-select="rightSelect">
+                                        <img src="img/sort.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Sort current folder
+                                        </div>
+                                    </div>
+                                    <div class="button trash-click" data-select="rightSelect">
+                                        <img src="img/trash.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Trash select items on current folder
+                                        </div>
+                                    </div>
+                                    <a class="button folder-click" data-select="rightSelect" data-folderclick="0"
+                                        href="#addBook" rel="modal:open">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Add new folder on open folder current
+                                        </div>
+                                        <img src="img/folder.svg" alt="">
+                                    </a>
+                                    <a href="#addBook" rel="modal:open" class="button folder-click"
+                                        data-select="rightSelect" data-folderclick="1">
+                                        <img src="img/bachnmark.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Add new bookmark on open folder current
+                                        </div>
+                                    </a>
+                                    <div class="button moveUp" data-select="rightSelect">
+                                        <img src="img/top.svg" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Move top select items on current folder
+                                        </div>
+                                    </div>
+                                    <div class="button moveBottom " data-select="rightSelect">
+                                        <img src="img/top.svg" class="rotate-180" alt="">
+                                        <div class="text-hover options-instuction" data-options="true">
+                                            Move bottom select items on current folder
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-default" id="addAllBookmarkRight">add all boochmark</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boochmark-global rightSelect">
+                        <input class="hide inputIDCurrent" value="0">
+                        <input class="hide inputIDPrev" value="0">
+                        <select class="select-main" id="rightSelect" name="rightSelect" multiple="multiple" size="20">
+
+                        </select>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+
+
+        <!--
+                <input id="reloadCurrentBtn" ;="" value="Reload" type="button"><br> <br>
+                <input id="goToRootBtn" ;="" value="Go to Root" type="button">
+
+                <input id="sortAll" ;="" value="Sort All" type="button"><br /><br /><br />
+
+                <p id="leftSelectbreadCrumbs"></p>
+                <p id="rightSelectbreadCrumbs"></p>
+           
+                 <input id="removeAllFromLeftSelectBtn" ;="" value="Remove All From Left" type="button">
+                <input id="sortLeftSelectBtn" ;="" value="Sort Left" type="button">
+
+                <input id="removeAllFromRightSelectBtn" ;="" value="Remove All From Right" type="button"><br />
+
+
+                <p><a href="#addBook" rel="modal:open">Add new Bookmarks</a></p><br />
+                <span>search</span>
+                <input type="text" id="searhBookmark"> <br> <br>
+                <span>search global</span>
+                <input type="text" id="searhBookmarkGlobal">
+                <input id="addAllBookmark" ;="" value="add all bookmark" type="button">
+                <div class="div-panels">
+                    <div class="div-left-select context-menu-one"><select id="leftSelect" class="searchSelect"
+                            name="leftSelect" multiple="multiple" size="20">
+                        </select></div>
+
+                    <div class="div-right-select"><select id="rightSelect" name="rightSelect" multiple="multiple"
+                            size="20">
+                        </select></div>
+                </div>
+ -->
+
+    </form>
+
+
+    <div id="contextMenu" class="context-menu" style="display: none">
+        <ul class="menu">
+            <!-- <li id="reloadCurrentBtn"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> Reload</a></li> -->
+            <li class="moveUp"><a href="#" class=""><i class="fa fa-copy" aria-hidden="true"></i> Move
+                    Up</a>
+            </li>
+            <li class="moveBottom"><a href="#" class=""><i class="fa fa-copy" aria-hidden="true"></i> Move
+                    Bottom</a>
+            </li>
+            <li><a href="#" class="link-drop" target="_blank"><i class="fa fa-copy" aria-hidden="true"></i> Open
+                    Link</a></li>
+            <li class="link"><a href="#"><i class="fa fa-link" aria-hidden="true"></i> Copy Link Address</a></li>
+            <li class="copy"><a href="#"><i class="fa fa-copy" aria-hidden="true"></i> Copy Name</a></li>
+            <li class="udpate"><a href="#updateBlock" rel="modal:open"><i class="fa fa-paste" aria-hidden="true"></i>
+                    Update</a></li>
+            <li class="" id="moveToRightSelectBtn"><a href="#"><i class="fa fa-copy" aria-hidden="true"></i>Move >
+                </a></li>
+            <li class="" id="moveToLeftSelectBtn"><a href="#"><i class="fa fa-copy" aria-hidden="true"></i>
+                    < Move </a>
+            </li>
+
+            <!--         <li class="paste"><a href="#"><i class="fa fa-paste" aria-hidden="true"></i> Move to</a></li>
+            <li class="download"><a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download</a></li>
+                    <li class="share"><a href="#"><i class="fa fa-share" aria-hidden="true"></i> Share</a></li>-->
+
+            <li class="trash"><a href="#"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
+
+        </ul>
+    </div>
+    <script src="/third-party/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="popup.js"></script>
+    <script src="context-menu.js"></script>
+
+
+</body>
+
+</html>
