@@ -20,7 +20,7 @@
     <form name="drop_list" action="options.html" method="post">
 
 
-
+        <input type="text" class="d-none" id="isPopup" data-ispopup="true">
         <div class="boochmark">
 
             <div class="boochmark__row">
@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-default" id="addAllBookmark">add all boochmark</div>
+                                <div class="btn-default" id="addAllBookmark">add all bookmarks</div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
 
                     </div>
                 </div>
-                <div class="boochmark__body">
+                <div class="boochmark__body" data-only="false">
                     <div class="boochmark-home">
 
                         <div class="wrapper">
@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-default" id="addAllBookmarkRight">add all boochmark</div>
+                                <div class="btn-default" id="addAllBookmarkRight">add all bookmarks</div>
                             </div>
                         </div>
                     </div>
@@ -254,9 +254,11 @@
             <li class="copy"><a href="#"><i class="fa fa-copy" aria-hidden="true"></i> Copy Name</a></li>
             <li class="udpate"><a href="#updateBlock" rel="modal:open"><i class="fa fa-paste" aria-hidden="true"></i>
                     Update</a></li>
-            <li class="" id="moveToRightSelectBtn"><a href="#"><i class="fa fa-copy" aria-hidden="true"></i>Move >
+            <li data-only="false" class="" id="moveToRightSelectBtn"><a href="#"><i class="fa fa-copy"
+                        aria-hidden="true"></i>Move >
                 </a></li>
-            <li class="" id="moveToLeftSelectBtn"><a href="#"><i class="fa fa-copy" aria-hidden="true"></i>
+            <li data-only="false" class="" id="moveToLeftSelectBtn"><a href="#"><i class="fa fa-copy"
+                        aria-hidden="true"></i>
                     < Move </a>
             </li>
 
@@ -268,7 +270,7 @@
 
         </ul>
     </div>
-    <script src="/third-party/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/third-party/sweetalert2.min.js"></script>
     <script src="popup.js"></script>
     <script src="context-menu.js"></script>
 

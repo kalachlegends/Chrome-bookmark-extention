@@ -9,7 +9,7 @@
     <script src="third-party/jquery-ui-1.12.1.js"></script>
     <title>Bookmarks Manager</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/third-party/jquery.modal.min.css" />
+    <link rel="icon" type="image/x-icon" href="icon.png">
 </head>
 
 <body style="width: 100%">
@@ -20,7 +20,7 @@
     <form name="drop_list" action="options.html" method="post">
 
 
-
+        <input type="text" class="d-none" id="isPopup" data-ispopup="false">
         <div class="boochmark">
 
             <div class="boochmark__row">
@@ -99,11 +99,11 @@
                                             Setting options
                                         </div>
                                     </div>
-                                    <div class="button " data-select="leftSelect">
+                                    <!--    <div class="button " data-select="leftSelect">
                                         <input type="file" class="input-file">
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="btn-default" id="addAllBookmark">add all boochmark</div>
+                                <div class="btn-default" id="addAllBookmark">add all bookmarks</div>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
 
                     </div>
                 </div>
-                <div class="boochmark__body">
+                <div class="boochmark__body ">
                     <div class="boochmark-home">
 
                         <div class="wrapper">
@@ -187,7 +187,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-default" id="addAllBookmarkRight">add all boochmark</div>
+                                <div class="btn-default" id="addAllBookmarkRight">add all bookmarks</div>
                             </div>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
 
         </ul>
     </div>
-    <script src="/third-party/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/third-party/sweetalert2.min.js"></script>
     <script src="popup.js"></script>
     <script src="context-menu.js"></script>
 

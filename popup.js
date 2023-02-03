@@ -208,13 +208,57 @@ function hideOrShowHints() {
     })
 }
 document.addEventListener('DOMContentLoaded', function () {
+    const isPopup = document.querySelector("#isPopup").dataset.ispopup
     hideOrShowHints()
     getSubTree("0");
     setTimeout(function () {
         addAllFromCurrent('#leftSelect', globalValues.bookmarks.leftSelect.currentNode)
         addAllFromCurrent('#rightSelect', globalValues.bookmarks.rightSelect.currentNode)
     }, 100)
+    const elem = [...document.querySelectorAll(`[data-only="false"]`)]
+    console.log(elem)
+    if (!localStorage.getItem("onlyAllBookmark")) {
+        localStorage.setItem("onlyAllBookmark", "false")
+    }
 
+
+    if (!localStorage.getItem("onlyOneColumn")) {
+        localStorage.setItem("onlyOneColumn", "false")
+    } else {
+        const isOnlyColumnt = localStorage.getItem("onlyOneColumn")
+        if (isOnlyColumnt == "true") {
+            const elem = [...document.querySelectorAll(`[data-only="false"]`)]
+            elem.forEach(el => {
+                el.setAttribute("data-only", "true")
+            })
+
+            console.log(elem)
+        }
+        if (localStorage.getItem("onlyAllBookmark") == "true" && isPopup == "true") {
+            console.log("True")
+            setTimeout(function () {
+                let currentLeft = globalValues.bookmarks.leftSelect.currentNode.children
+                let newNode = globalValues.bookmarks.leftSelectSearch.currentNode = {
+                    parentId: 0,
+                    index: 0,
+                    id: "0",
+                    title: "",
+                    children: [],
+                    parentNode: null
+                };
+                for (let i = 0; currentLeft.length > i; i++) {
+                    newNode.children.push(currentLeft[i])
+                    if (undefined != currentLeft[i].children) {
+                        addAllBookmark(currentLeft[i].children, "#leftSelect", newNode.children);
+                    }
+                }
+                globalValues.bookmarks.options["searchLeft"] = true
+                addAllFromCurrent('#leftSelect', newNode, true)
+                addInputCurrentId("#leftSelect", newNode)
+            }, 300)
+        }
+
+    }
 
     $('.reloadButton').click(function () {
         reloadFunc(this.dataset.select)
@@ -664,12 +708,20 @@ function addAllFromCurrent(selectId, current, boolean) {
 }
 function addOption(selectId, text, value, id, url, folder, parentId, breadCrumbs) {
     let classCrumbs = ""
+    let title = `<span class="title-option">${text}</span>`
     if (undefined == breadCrumbs) breadCrumbs = ""
-    else classCrumbs = "option-search"
+    else {
+        title = title.replace(/class="title-option"/g, `class="title-option d-none"`)
+        console.log(title)
+
+        classCrumbs = "option-search"
+
+    }
+
     $(selectId).append($('<option>', {
         value: value,
         class: `option-main ${classCrumbs}`,
-        html: `<span class="title-option">${text}</span>`,
+        html: title,
         "data-href": url,
         "data-folder": folder,
         "data-index": id,
@@ -705,11 +757,36 @@ $('.setting-click').click(function (e) {
         title: `Setting`,
         text: "Here you can customize your application.",
         icon: 'info',
-        html: `<input type="checkbox" class="checkbox-settings" id="scales" name="scales"> 
-        <label class="label-settings" for="scales"></label>`,
+        html: `
+        <div class="adas">
+        <div><input type="checkbox" class="checkbox-settings" id="scales" name="scales"> 
+        <label class="label-settings" for="scales"></label> </div>
+        <div> <input type="checkbox"  id="onlyOneColumn" name="onlyOneColumn"> 
+        <label class="label-settings1" for="onlyOneColumn">Only one Column in the popup?</label></div>
+        <div>
+        <input type="checkbox"  id="onlyAllBookmark" name="onlyAllBookmark"> 
+        <label class="label-settings1" for="onlyAllBookmark">Always have all the elements in the pop?</label>
+        </div>
+        </div>
+        `,
         willOpen: function () {
+            const isonlyOneColumn = localStorage.getItem("onlyOneColumn")
+            const isonlyAllBookmark = localStorage.getItem("onlyAllBookmark")
+            if (isonlyAllBookmark == "true")
+                $('#onlyAllBookmark').attr('checked', true)
+            else {
+                $('#onlyAllBookmark').attr('checked', false)
+            }
+            if (isonlyOneColumn == "true")
+                $('#onlyOneColumn').attr('checked', true)
+            else {
+                $('#onlyOneColumn').attr('checked', false)
+            }
             let settingsCheckEl, booleanCheck, labelElement
             settingsCheckEl = $('.checkbox-settings')
+            $("#onlyOneColumn").click(function () {
+                // $("#onlyOneColumn").attr('checked', false)
+            })
             labelElement = $(".label-settings")
             booleanCheck = settingsCheckEl.is(':checked')
             console.log(localStorage.getItem('settingsCheck'))
@@ -734,6 +811,37 @@ $('.setting-click').click(function (e) {
         if (result.isConfirmed) {
             let booleanCheck
             booleanCheck = $('.checkbox-settings').is(':checked')
+            const bool = $('#onlyOneColumn').is(':checked')
+
+            const boollyAllBookmark = $('#onlyAllBookmark').is(':checked')
+            if (boollyAllBookmark)
+                localStorage.setItem('onlyAllBookmark', true);
+            else {
+                localStorage.setItem('onlyAllBookmark', false);
+            }
+            console.log(bool)
+            if (bool) {
+                console.log(bool)
+                localStorage.setItem('onlyOneColumn', true);
+
+
+                const elem = [...document.querySelectorAll(`[data-only="false"]`)]
+                console.log(elem)
+                elem.forEach(el => {
+                    el.setAttribute("data-only", "true")
+                })
+
+            }
+            else {
+
+                const elem = [...document.querySelectorAll(`[data-only="true"]`)]
+
+                localStorage.setItem('onlyOneColumn', false);
+                elem.forEach(el => {
+                    el.setAttribute("data-only", "false")
+                })
+
+            }
 
             if (booleanCheck) localStorage.setItem('settingsCheck', true);
             else localStorage.setItem('settingsCheck', false);
